@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  WebOAuthViewController.h
 //  Week7-StackOverflow
 //
 //  Created by Joey Nessif on 9/15/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface WebOAuthViewController : UIViewController
 
 @end
-
