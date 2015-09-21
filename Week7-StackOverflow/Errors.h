@@ -8,16 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kStackOverFlowErrorDomain;
+extern NSString *const kStackOverflowErrorDomain;
 
 typedef enum : NSUInteger {
-  StackOverFlowBadJSON,
-  StackOverFlowConnectionDown,
-  StackOverFlowTooManyAttempts,
-  StackOverFlowInvalidParameter,
-  StackOverFlowNeedAuthentication,
+  StackOverflowInvalidParameter,
+  StackOverflowNeedProperAuthentication,
+  StackOverflowAccessDenied,
+  StackOverflowNoMethod,
+  StackOverflowKeyRequired,
+  StackOverflowAccessTokenCompromised,
+  StackOverflowWriteFailed,
+  StackOverflowDuplicateRequest,
+  StackOverflowInternalError,
+  StackOverflowThrottleViolation,
+  StackOverflowTemporarilyUnavailable,
+//  StackOverFlowBadJSON,
+  StackOverflowConnectionDown,
   StackOverFlowGeneralError
-} StackOverFlowErrorCodes;
+} StackOverflowErrorCodes;
 
 
 

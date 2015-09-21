@@ -7,8 +7,15 @@
 //
 
 #import "QuestionSearchViewController.h"
+#import "StackOverflowService.h"
+#import "Question.h"
+#import "QuestionCell.h"
 
-@interface QuestionSearchViewController ()
+@interface QuestionSearchViewController () <UISearchBarDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong,nonatomic) NSArray *questions;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,22 +23,87 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  self.searchBar.delegate = self;
+  self.tableView.dataSource = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self.tableView reloadData];
+
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UISearchBarDelegate
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+  self.isDownloading = true;
+  [StackOverflowService questionsForSearchTerm:searchBar.text completionHandler:^(NSArray *results, NSError *error) {
+    if (error) {
+      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController dismissViewControllerAnimated:true completion:nil];
+      }];
+      [alertController addAction:action];
+      
+      [self presentViewController:alertController animated:true completion:nil];
+    } else {
+      self.questions = results;
+      [self.tableView reloadData];
+      dispatch_group_t group = dispatch_group_create();
+      dispatch_queue_t imageQueue = dispatch_queue_create("com.GIS.Week7-StackOverflow",DISPATCH_QUEUE_CONCURRENT );
+      
+      for (Question *question in results) {
+        dispatch_group_async(group, imageQueue, ^{
+          NSString *avatarURL = question.avatarURL;
+          NSURL *imageURL = [NSURL URLWithString:avatarURL];
+          NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+          UIImage *image = [UIImage imageWithData:imageData];
+          question.avatarPic = image;
+        });
+      }
+  
+      dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Images Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          [alertController dismissViewControllerAnimated:true completion:nil];
+        }];
+        [alertController addAction:action];
+        
+        [self presentViewController:alertController animated:true completion:nil];
+        self.isDownloading = false;
+        
+      });
+    }
+  }];
 }
-*/
+
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return self.questions.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  static NSString *fontName = @"Copperplate";
+  static int fontSize = 8;
+  
+  QuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionCell" forIndexPath:indexPath];
+  
+  Question *question = self.questions[indexPath.row];
+  
+  cell.nameLabel.font = [UIFont fontWithName:fontName size:fontSize];
+  cell.nameLabel.text = question.ownerName;
+  cell.questionLabel.font = [UIFont fontWithName:fontName size:fontSize];
+  cell.questionLabel.text = question.title;
+    
+  return cell;
+}
 
 @end

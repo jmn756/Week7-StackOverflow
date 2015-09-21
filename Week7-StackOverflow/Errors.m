@@ -8,4 +8,4 @@
 
 #import "Errors.h"
 
-NSString *const kStackOverFlowErrorDomain = @"com.GIS.Week7-StackOverflow";
+NSString *const kStackOverflowErrorDomain = @"com.GIS.Week7-StackOverflow";

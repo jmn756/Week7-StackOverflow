@@ -25,6 +25,8 @@
 		B0105D3E1BA88265008E1FE8 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0105D3D1BA88265008E1FE8 /* QuestionCell.m */; };
 		B0105D411BA88C37008E1FE8 /* MainMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0105D401BA88C37008E1FE8 /* MainMenuTableViewController.m */; };
 		B0105D451BA8A12F008E1FE8 /* BurgerBtn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0105D441BA8A12F008E1FE8 /* BurgerBtn.jpg */; };
+		B04CA3851BABBD9300B71193 /* StackOverflowService.m in Sources */ = {isa = PBXBuildFile; fileRef = B04CA3841BABBD9300B71193 /* StackOverflowService.m */; settings = {ASSET_TAGS = (); }; };
+		B04CA3881BABBE8600B71193 /* QuestionJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B04CA3871BABBE8600B71193 /* QuestionJSONParser.m */; settings = {ASSET_TAGS = (); }; };
 		B0ED7D631BAB318200BD29EC /* Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = B0ED7D621BAB318200BD29EC /* Errors.m */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,10 @@
 		B0105D3F1BA88C37008E1FE8 /* MainMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuTableViewController.h; sourceTree = "<group>"; };
 		B0105D401BA88C37008E1FE8 /* MainMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuTableViewController.m; sourceTree = "<group>"; };
 		B0105D441BA8A12F008E1FE8 /* BurgerBtn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BurgerBtn.jpg; sourceTree = "<group>"; };
+		B04CA3831BABBD9300B71193 /* StackOverflowService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackOverflowService.h; sourceTree = "<group>"; };
+		B04CA3841BABBD9300B71193 /* StackOverflowService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackOverflowService.m; sourceTree = "<group>"; };
+		B04CA3861BABBE8600B71193 /* QuestionJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionJSONParser.h; sourceTree = "<group>"; };
+		B04CA3871BABBE8600B71193 /* QuestionJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionJSONParser.m; sourceTree = "<group>"; };
 		B0ED7D611BAB318200BD29EC /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
 		B0ED7D621BAB318200BD29EC /* Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Errors.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +193,10 @@
 				B0105D3A1BA88240008E1FE8 /* User.m */,
 				B0ED7D611BAB318200BD29EC /* Errors.h */,
 				B0ED7D621BAB318200BD29EC /* Errors.m */,
+				B04CA3831BABBD9300B71193 /* StackOverflowService.h */,
+				B04CA3841BABBD9300B71193 /* StackOverflowService.m */,
+				B04CA3861BABBE8600B71193 /* QuestionJSONParser.h */,
+				B04CA3871BABBE8600B71193 /* QuestionJSONParser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -266,7 +276,7 @@
 		B0105CEF1BA87E4C008E1FE8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Joey Nessif";
 				TargetAttributes = {
 					B0105CF61BA87E4C008E1FE8 = {
@@ -360,6 +370,8 @@
 				B0105D321BA880FA008E1FE8 /* MyProfileViewController.m in Sources */,
 				B0105D031BA87E4C008E1FE8 /* BurgerMenuViewController.m in Sources */,
 				B0105D291BA880B3008E1FE8 /* WebOAuthViewController.m in Sources */,
+				B04CA3881BABBE8600B71193 /* QuestionJSONParser.m in Sources */,
+				B04CA3851BABBD9300B71193 /* StackOverflowService.m in Sources */,
 				B0105D3E1BA88265008E1FE8 /* QuestionCell.m in Sources */,
 				B0105D411BA88C37008E1FE8 /* MainMenuTableViewController.m in Sources */,
 				B0105D001BA87E4C008E1FE8 /* AppDelegate.m in Sources */,
@@ -431,6 +443,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -499,6 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Week7-StackOverflow/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.GIS.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -510,6 +524,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Week7-StackOverflow/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.GIS.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -519,7 +534,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(SDKROOT)/System/Library/Frameworks",
 					"$(inherited)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -528,6 +543,7 @@
 				);
 				INFOPLIST_FILE = "Week7-StackOverflowTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.GIS.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Week7-StackOverflow.app/Week7-StackOverflow";
 			};
@@ -538,11 +554,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(SDKROOT)/System/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Week7-StackOverflowTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.GIS.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Week7-StackOverflow.app/Week7-StackOverflow";
 			};

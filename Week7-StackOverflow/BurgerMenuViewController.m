@@ -35,6 +35,8 @@ CGFloat const kburgerButtonHeight = 50.0;
 @property (nonatomic) CGFloat topVCWidth;
 
 
+
+
 @end
 
 @implementation BurgerMenuViewController
@@ -68,8 +70,8 @@ CGFloat const kburgerButtonHeight = 50.0;
   self.viewControllers = @[questionSearchVC,myQuestionsVC, myProfileVC];
   self.topViewController = questionSearchVC;
   
-  
-  UIButton *burgerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kburgerButtonWidth, kburgerButtonHeight)];
+  //UILayout top = self.topViewController.topLayoutGuide;
+  UIButton *burgerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, kburgerButtonWidth, kburgerButtonHeight)];
   [burgerButton setImage:[UIImage imageNamed:@"BurgerBtn.jpg"] forState:UIControlStateNormal];
   self.burgerButton = burgerButton;
   [self.topViewController.view addSubview:self.burgerButton];
