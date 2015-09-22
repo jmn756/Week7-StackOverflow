@@ -30,11 +30,6 @@
   } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
     if (operation.response) {
       NSError *stackOverflowError = [self errorForStatusCode:operation.response.statusCode];
-      //
-      //      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      //        completionHandler(nil,stackOverflowError);
-      //      }]; SAME THING
-      
       dispatch_async(dispatch_get_main_queue(), ^{
         completionHandler(nil,stackOverflowError);
       });

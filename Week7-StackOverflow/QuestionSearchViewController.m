@@ -49,11 +49,11 @@
       [self presentViewController:alertController animated:true completion:nil];
     } else {
       self.questions = results;
-      [self.tableView reloadData];
+    
       dispatch_group_t group = dispatch_group_create();
       dispatch_queue_t imageQueue = dispatch_queue_create("com.GIS.Week7-StackOverflow",DISPATCH_QUEUE_CONCURRENT );
       
-      for (Question *question in results) {
+      for (Question *question in self.questions) {
         dispatch_group_async(group, imageQueue, ^{
           NSString *avatarURL = question.avatarURL;
           NSURL *imageURL = [NSURL URLWithString:avatarURL];
@@ -64,13 +64,14 @@
       }
   
       dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Images Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          [alertController dismissViewControllerAnimated:true completion:nil];
-        }];
-        [alertController addAction:action];
-        
-        [self presentViewController:alertController animated:true completion:nil];
+        [self.tableView reloadData];
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Images Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//          [alertController dismissViewControllerAnimated:true completion:nil];
+//        }];
+//        [alertController addAction:action];
+//        
+//        [self presentViewController:alertController animated:true completion:nil];
         self.isDownloading = false;
         
       });
@@ -92,16 +93,18 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
   static NSString *fontName = @"Copperplate";
-  static int fontSize = 8;
+  static int fontSize = 10;
   
   QuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionCell" forIndexPath:indexPath];
   
   Question *question = self.questions[indexPath.row];
-  
   cell.nameLabel.font = [UIFont fontWithName:fontName size:fontSize];
   cell.nameLabel.text = question.ownerName;
+  cell.questionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  cell.questionLabel.numberOfLines = 0;
   cell.questionLabel.font = [UIFont fontWithName:fontName size:fontSize];
   cell.questionLabel.text = question.title;
+  cell.imageView.image = question.avatarPic;
     
   return cell;
 }
