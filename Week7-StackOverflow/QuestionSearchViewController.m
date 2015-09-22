@@ -65,13 +65,13 @@
   
       dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Images Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//          [alertController dismissViewControllerAnimated:true completion:nil];
-//        }];
-//        [alertController addAction:action];
-//        
-//        [self presentViewController:alertController animated:true completion:nil];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Images Downloaded" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          [alertController dismissViewControllerAnimated:true completion:nil];
+        }];
+        [alertController addAction:action];
+        
+        [self presentViewController:alertController animated:true completion:nil];
         self.isDownloading = false;
         
       });

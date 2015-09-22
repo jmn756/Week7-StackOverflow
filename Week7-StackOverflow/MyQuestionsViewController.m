@@ -8,7 +8,8 @@
 
 #import "MyQuestionsViewController.h"
 
-@interface MyQuestionsViewController ()
+@interface MyQuestionsViewController () <UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,7 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  self.tableView.dataSource = self;
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +26,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UITableViewDataSource
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return 1;
 }
-*/
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return 5;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  static NSString *fontName = @"Copperplate";
+  static int fontSize = 10;
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyQuestionCell" forIndexPath:indexPath];
+  
+  cell.textLabel.font = [UIFont fontWithName:fontName size:fontSize];
+  if (indexPath.row == 4) {
+    cell.textLabel.text = @"You have not asked any questions.";
+  }
+  
+  return cell;
+}
 
 @end

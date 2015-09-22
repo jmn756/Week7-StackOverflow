@@ -129,6 +129,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="80D-qN-ILt">
                                 <rect key="frame" x="0.0" y="95" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionCell" id="bvY-pa-qpc" customClass="QuestionCell">
                                         <rect key="frame" x="0.0" y="28" width="600" height="97"/>
@@ -219,8 +220,32 @@
                     <view key="view" contentMode="scaleToFill" id="MKR-ed-WB0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-hD-au7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyQuestionCell" id="Oh0-hl-fu8">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oh0-hl-fu8" id="5Jf-Bs-U9H">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="uFB-hD-au7" firstAttribute="top" secondItem="MKR-ed-WB0" secondAttribute="topMargin" id="7EG-SN-p5N"/>
+                            <constraint firstItem="uFB-hD-au7" firstAttribute="leading" secondItem="MKR-ed-WB0" secondAttribute="leadingMargin" constant="-20" id="UGe-9J-UqK"/>
+                            <constraint firstItem="Jv6-bC-SgS" firstAttribute="top" secondItem="uFB-hD-au7" secondAttribute="bottom" id="bLm-yw-3r8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uFB-hD-au7" secondAttribute="trailing" constant="-20" id="lBW-5r-jM8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="uFB-hD-au7" id="yTe-k3-BFP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqb-6b-5kU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

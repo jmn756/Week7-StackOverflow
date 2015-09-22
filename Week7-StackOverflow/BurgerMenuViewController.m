@@ -128,7 +128,6 @@ CGFloat const kburgerButtonHeight = 50.0;
   
   if (sender.state == UIGestureRecognizerStateEnded) {
     if (self.topVCOriginX > self.topVCWidth / kburgerOpenScreenDivider) {
-      NSLog(@"user is opening menu");
       
       [UIView animateWithDuration:ktimeToSlideMenu animations:^{
         self.topViewController.view.center = CGPointMake(parentCenterX * kburgerOpenScreenMultiplier, self.topVCCenterY);
@@ -204,7 +203,6 @@ CGFloat const kburgerButtonHeight = 50.0;
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSLog(@"%ld",(long)indexPath.row);
   
   UIViewController *newVC = self.viewControllers[indexPath.row];
   if (![newVC isEqual:self.topViewController]) {
