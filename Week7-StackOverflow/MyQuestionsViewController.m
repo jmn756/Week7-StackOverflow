@@ -34,7 +34,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 5;
+  return 35;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -46,8 +46,9 @@
   
   cell.textLabel.font = [UIFont fontWithName:fontName size:fontSize];
   if (indexPath.row == 4) {
-    cell.textLabel.text = @"You have not asked any questions.";
+    cell.textLabel.text = @"    You have not asked any questions.";
   }
+  cell.backgroundColor = [UIColor lightGrayColor];
   
   return cell;
 }

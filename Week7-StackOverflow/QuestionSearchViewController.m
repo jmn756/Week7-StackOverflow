@@ -25,6 +25,7 @@
     [super viewDidLoad];
   self.searchBar.delegate = self;
   self.tableView.dataSource = self;
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,6 +106,7 @@
   cell.questionLabel.font = [UIFont fontWithName:fontName size:fontSize];
   cell.questionLabel.text = question.title;
   cell.imageView.image = question.avatarPic;
+  cell.backgroundColor = [UIColor lightGrayColor];
     
   return cell;
 }
